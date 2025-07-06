@@ -1,11 +1,12 @@
 defmodule Dictionary.Impl.WordList do
+  require Logger
   @type t :: list(String.t)
 
   @spec word_list :: t
   def word_list do
-    IO.inspect(File.cwd(), label: "Debug:Dictionary.Impl.WordList:word_list():File.cwd")
+    Logger.debug("Debug:Dictionary.Impl.WordList:word_list():File.cwd #{File.cwd!()}")
 
-    "../dictionary/assets/words.txt"
+    File.cwd!() <> "/../dictionary/assets/words.txt"
     |> File.read!()
     |> String.split(~r/\n/, trim: true)
   end
