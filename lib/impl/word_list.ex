@@ -6,7 +6,13 @@ defmodule Dictionary.Impl.WordList do
   def word_list do
     Logger.debug("Debug:Dictionary.Impl.WordList:word_list():File.cwd #{File.cwd!()}")
 
-    File.cwd!() <> "/../dictionary/assets/words.txt"
+    path =
+      :dictionary
+      |> :code.priv_dir()
+      |> to_string()
+      |> Path.join("words.txt")
+
+    path
     |> File.read!()
     |> String.split(~r/\n/, trim: true)
   end
