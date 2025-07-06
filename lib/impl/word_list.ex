@@ -3,6 +3,8 @@ defmodule Dictionary.Impl.WordList do
 
   @spec word_list :: t
   def word_list do
+    IO.inspect(File.cwd(), label: "Debug:Dictionary.Impl.WordList:word_list():File.cwd")
+
     "../dictionary/assets/words.txt"
     |> File.read!()
     |> String.split(~r/\n/, trim: true)
